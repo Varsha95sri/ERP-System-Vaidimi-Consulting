@@ -46,7 +46,7 @@ CREATE TABLE `attendances` (
   KEY `attendances_date` (`date`),
   KEY `attendances_status` (`status`),
   CONSTRAINT `attendances_ibfk_1` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -55,7 +55,7 @@ CREATE TABLE `attendances` (
 
 LOCK TABLES `attendances` WRITE;
 /*!40000 ALTER TABLE `attendances` DISABLE KEYS */;
-INSERT INTO `attendances` VALUES (17,10,'2026-09-16','2026-09-16 10:33:23',NULL,8.00,'PRESENT','Verified by HR: On-duty client morning meeting','::1',1,'2026-09-16 10:33:23','2026-09-16 10:34:38',0,0,NULL,NULL,0,'NOT_CHECKED_IN'),(19,12,'2026-09-16','2026-09-16 05:47:00',NULL,0.00,'PRESENT','Late login at 10 am','::1',1,'2026-09-16 11:17:35','2026-09-16 11:32:11',0,0,NULL,NULL,0,'NOT_CHECKED_IN'),(20,13,'2026-09-16','2026-09-16 11:17:35',NULL,0.00,'PRESENT','Late login at 4:47 PM','::1',0,'2026-09-16 11:17:35','2026-09-16 11:17:35',1,0,NULL,NULL,0,'NOT_CHECKED_IN'),(22,13,'2026-09-17','2026-09-17 07:16:46',NULL,0.00,'PRESENT','Late login at 12:46 PM','::1',0,'2026-09-17 07:16:46','2026-09-17 08:22:40',1,0,'2026-09-17 08:22:40','2026-09-17 08:22:40',1,'CHECKED_IN'),(23,12,'2026-09-17','2026-09-17 08:09:48','2026-09-17 08:22:07',0.19,'HALF_DAY','Late login at 1:39 PM','::1',0,'2026-09-17 08:09:48','2026-09-17 08:22:07',1,0,'2026-09-17 08:22:06','2026-09-17 08:22:07',1,'CHECKED_OUT'),(24,1,'2026-09-19','2026-09-19 10:58:05',NULL,0.00,'PRESENT','Late login at 4:28 PM','::1',0,'2026-09-19 10:58:05','2026-09-19 10:58:05',1,0,NULL,NULL,0,'CHECKED_IN'),(25,9,'2026-09-19','2026-09-19 11:08:43',NULL,0.00,'PRESENT','Late login at 4:38 PM','::1',0,'2026-09-19 11:08:43','2026-09-19 11:08:43',1,0,NULL,NULL,0,'CHECKED_IN'),(26,12,'2026-09-19','2026-09-19 11:08:43',NULL,0.00,'PRESENT','Late login at 4:38 PM','::1',0,'2026-09-19 11:08:43','2026-09-19 11:08:43',1,0,NULL,NULL,0,'CHECKED_IN'),(27,20,'2026-09-19','2026-09-19 11:37:01',NULL,0.00,'PRESENT','Late login at 5:07 PM','::1',0,'2026-09-19 11:37:01','2026-09-19 11:37:01',1,0,NULL,NULL,0,'CHECKED_IN'),(28,21,'2026-09-19','2026-09-19 12:00:32',NULL,0.00,'PRESENT','Late login at 5:30 PM','::1',0,'2026-09-19 12:00:32','2026-09-19 12:00:32',1,0,NULL,NULL,0,'CHECKED_IN'),(29,10,'2026-09-19','2026-09-19 12:00:32',NULL,0.00,'PRESENT','Late login at 5:30 PM','::1',0,'2026-09-19 12:00:32','2026-09-19 12:00:32',1,0,NULL,NULL,0,'CHECKED_IN'),(30,22,'2026-09-19','2026-09-19 12:00:32',NULL,0.00,'PRESENT','Late login at 5:30 PM','::1',0,'2026-09-19 12:00:32','2026-09-19 12:00:32',1,0,NULL,NULL,0,'CHECKED_IN'),(31,1,'2026-09-21','2026-09-21 10:49:00',NULL,0.00,'PRESENT','Late login at 4:19 PM','::1',0,'2026-09-21 10:49:00','2026-09-21 10:49:00',1,0,NULL,NULL,0,'CHECKED_IN'),(32,12,'2026-09-21','2026-09-21 10:54:49',NULL,0.00,'PRESENT','Late login at 4:24 PM','::1',0,'2026-09-21 10:54:49','2026-09-21 10:54:49',1,0,NULL,NULL,0,'CHECKED_IN'),(33,1,'2026-10-08','2026-10-08 06:06:30',NULL,0.00,'PRESENT','Late login at 11:36 AM','::1',0,'2026-10-08 06:06:30','2026-10-08 06:06:30',1,0,NULL,NULL,0,'CHECKED_IN'),(34,1,'2026-10-10','2026-10-10 06:50:17',NULL,0.00,'PRESENT','Late login at 12:20 PM','::1',0,'2026-10-10 06:50:17','2026-10-10 06:50:17',1,0,NULL,NULL,0,'CHECKED_IN'),(35,24,'2026-10-10','2026-10-10 06:54:35',NULL,0.00,'PRESENT','Late login at 12:24 PM','::1',0,'2026-10-10 06:54:35','2026-10-10 06:54:35',1,0,NULL,NULL,0,'CHECKED_IN');
+INSERT INTO `attendances` VALUES (17,10,'2026-09-16','2026-09-16 10:33:23',NULL,8.00,'PRESENT','Verified by HR: On-duty client morning meeting','::1',1,'2026-09-16 10:33:23','2026-09-16 10:34:38',0,0,NULL,NULL,0,'NOT_CHECKED_IN'),(19,12,'2026-09-16','2026-09-16 05:47:00',NULL,0.00,'PRESENT','Late login at 10 am','::1',1,'2026-09-16 11:17:35','2026-09-16 11:32:11',0,0,NULL,NULL,0,'NOT_CHECKED_IN'),(20,13,'2026-09-16','2026-09-16 11:17:35',NULL,0.00,'PRESENT','Late login at 4:47 PM','::1',0,'2026-09-16 11:17:35','2026-09-16 11:17:35',1,0,NULL,NULL,0,'NOT_CHECKED_IN'),(22,13,'2026-09-17','2026-09-17 07:16:46',NULL,0.00,'PRESENT','Late login at 12:46 PM','::1',0,'2026-09-17 07:16:46','2026-09-17 08:22:40',1,0,'2026-09-17 08:22:40','2026-09-17 08:22:40',1,'CHECKED_IN'),(23,12,'2026-09-17','2026-09-17 08:09:48','2026-09-17 08:22:07',0.19,'HALF_DAY','Late login at 1:39 PM','::1',0,'2026-09-17 08:09:48','2026-09-17 08:22:07',1,0,'2026-09-17 08:22:06','2026-09-17 08:22:07',1,'CHECKED_OUT'),(24,1,'2026-09-19','2026-09-19 10:58:05',NULL,0.00,'PRESENT','Late login at 4:28 PM','::1',0,'2026-09-19 10:58:05','2026-09-19 10:58:05',1,0,NULL,NULL,0,'CHECKED_IN'),(25,9,'2026-09-19','2026-09-19 11:08:43',NULL,0.00,'PRESENT','Late login at 4:38 PM','::1',0,'2026-09-19 11:08:43','2026-09-19 11:08:43',1,0,NULL,NULL,0,'CHECKED_IN'),(26,12,'2026-09-19','2026-09-19 11:08:43',NULL,0.00,'PRESENT','Late login at 4:38 PM','::1',0,'2026-09-19 11:08:43','2026-09-19 11:08:43',1,0,NULL,NULL,0,'CHECKED_IN'),(27,20,'2026-09-19','2026-09-19 11:37:01',NULL,0.00,'PRESENT','Late login at 5:07 PM','::1',0,'2026-09-19 11:37:01','2026-09-19 11:37:01',1,0,NULL,NULL,0,'CHECKED_IN'),(28,21,'2026-09-19','2026-09-19 12:00:32',NULL,0.00,'PRESENT','Late login at 5:30 PM','::1',0,'2026-09-19 12:00:32','2026-09-19 12:00:32',1,0,NULL,NULL,0,'CHECKED_IN'),(29,10,'2026-09-19','2026-09-19 12:00:32',NULL,0.00,'PRESENT','Late login at 5:30 PM','::1',0,'2026-09-19 12:00:32','2026-09-19 12:00:32',1,0,NULL,NULL,0,'CHECKED_IN'),(30,22,'2026-09-19','2026-09-19 12:00:32',NULL,0.00,'PRESENT','Late login at 5:30 PM','::1',0,'2026-09-19 12:00:32','2026-09-19 12:00:32',1,0,NULL,NULL,0,'CHECKED_IN'),(31,1,'2026-09-21','2026-09-21 10:49:00',NULL,0.00,'PRESENT','Late login at 4:19 PM','::1',0,'2026-09-21 10:49:00','2026-09-21 10:49:00',1,0,NULL,NULL,0,'CHECKED_IN'),(32,12,'2026-09-21','2026-09-21 10:54:49',NULL,0.00,'PRESENT','Late login at 4:24 PM','::1',0,'2026-09-21 10:54:49','2026-09-21 10:54:49',1,0,NULL,NULL,0,'CHECKED_IN'),(33,1,'2026-10-08','2026-10-08 06:06:30',NULL,0.00,'PRESENT','Late login at 11:36 AM','::1',0,'2026-10-08 06:06:30','2026-10-08 06:06:30',1,0,NULL,NULL,0,'CHECKED_IN'),(34,1,'2026-10-10','2026-10-10 06:50:17',NULL,0.00,'PRESENT','Late login at 12:20 PM','::1',0,'2026-10-10 06:50:17','2026-10-10 06:50:17',1,0,NULL,NULL,0,'CHECKED_IN'),(35,24,'2026-10-10','2026-10-10 06:54:35',NULL,0.00,'PRESENT','Late login at 12:24 PM','::1',0,'2026-10-10 06:54:35','2026-10-10 06:54:35',1,0,NULL,NULL,0,'CHECKED_IN'),(36,1,'2026-10-21','2026-10-21 09:21:37',NULL,0.00,'PRESENT','Late login at 2:51 PM','::1',0,'2026-10-21 09:21:37','2026-10-21 09:21:37',1,0,NULL,NULL,0,'CHECKED_IN'),(37,25,'2026-10-21','2026-10-21 09:50:08',NULL,0.00,'PRESENT','Late login at 3:20 PM','::1',0,'2026-10-21 09:50:08','2026-10-21 09:50:08',1,0,NULL,NULL,0,'CHECKED_IN');
 /*!40000 ALTER TABLE `attendances` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -119,8 +119,8 @@ CREATE TABLE `chat_conversations` (
   PRIMARY KEY (`id`),
   KEY `project_id` (`project_id`),
   KEY `created_by` (`created_by`),
-  CONSTRAINT `chat_conversations_ibfk_79` FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `chat_conversations_ibfk_80` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON UPDATE CASCADE
+  CONSTRAINT `chat_conversations_ibfk_123` FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `chat_conversations_ibfk_124` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -154,8 +154,8 @@ CREATE TABLE `chat_messages` (
   PRIMARY KEY (`id`),
   KEY `conversation_id` (`conversation_id`),
   KEY `sender_id` (`sender_id`),
-  CONSTRAINT `chat_messages_ibfk_79` FOREIGN KEY (`conversation_id`) REFERENCES `chat_conversations` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `chat_messages_ibfk_80` FOREIGN KEY (`sender_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE
+  CONSTRAINT `chat_messages_ibfk_123` FOREIGN KEY (`conversation_id`) REFERENCES `chat_conversations` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `chat_messages_ibfk_124` FOREIGN KEY (`sender_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -187,8 +187,8 @@ CREATE TABLE `chat_participants` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `chat_participants_conversation_id_user_id` (`conversation_id`,`user_id`),
   KEY `user_id` (`user_id`),
-  CONSTRAINT `chat_participants_ibfk_79` FOREIGN KEY (`conversation_id`) REFERENCES `chat_conversations` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `chat_participants_ibfk_80` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE
+  CONSTRAINT `chat_participants_ibfk_123` FOREIGN KEY (`conversation_id`) REFERENCES `chat_conversations` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `chat_participants_ibfk_124` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -292,7 +292,29 @@ CREATE TABLE `company_settings` (
   UNIQUE KEY `key_38` (`key`),
   UNIQUE KEY `key_39` (`key`),
   UNIQUE KEY `key_40` (`key`),
-  UNIQUE KEY `key_41` (`key`)
+  UNIQUE KEY `key_41` (`key`),
+  UNIQUE KEY `key_42` (`key`),
+  UNIQUE KEY `key_43` (`key`),
+  UNIQUE KEY `key_44` (`key`),
+  UNIQUE KEY `key_45` (`key`),
+  UNIQUE KEY `key_46` (`key`),
+  UNIQUE KEY `key_47` (`key`),
+  UNIQUE KEY `key_48` (`key`),
+  UNIQUE KEY `key_49` (`key`),
+  UNIQUE KEY `key_50` (`key`),
+  UNIQUE KEY `key_51` (`key`),
+  UNIQUE KEY `key_52` (`key`),
+  UNIQUE KEY `key_53` (`key`),
+  UNIQUE KEY `key_54` (`key`),
+  UNIQUE KEY `key_55` (`key`),
+  UNIQUE KEY `key_56` (`key`),
+  UNIQUE KEY `key_57` (`key`),
+  UNIQUE KEY `key_58` (`key`),
+  UNIQUE KEY `key_59` (`key`),
+  UNIQUE KEY `key_60` (`key`),
+  UNIQUE KEY `key_61` (`key`),
+  UNIQUE KEY `key_62` (`key`),
+  UNIQUE KEY `key_63` (`key`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -397,12 +419,12 @@ CREATE TABLE `employees` (
   KEY `reporting_manager_id` (`reporting_manager_id`),
   KEY `mentor_id` (`mentor_id`),
   KEY `branch_id` (`branch_id`),
-  CONSTRAINT `employees_ibfk_767` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `employees_ibfk_768` FOREIGN KEY (`department_id`) REFERENCES `departments` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `employees_ibfk_769` FOREIGN KEY (`reporting_manager_id`) REFERENCES `employees` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `employees_ibfk_770` FOREIGN KEY (`mentor_id`) REFERENCES `employees` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `employees_ibfk_771` FOREIGN KEY (`branch_id`) REFERENCES `branches` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `employees_ibfk_952` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `employees_ibfk_953` FOREIGN KEY (`department_id`) REFERENCES `departments` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `employees_ibfk_954` FOREIGN KEY (`reporting_manager_id`) REFERENCES `employees` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `employees_ibfk_955` FOREIGN KEY (`mentor_id`) REFERENCES `employees` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `employees_ibfk_956` FOREIGN KEY (`branch_id`) REFERENCES `branches` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -411,7 +433,7 @@ CREATE TABLE `employees` (
 
 LOCK TABLES `employees` WRITE;
 /*!40000 ALTER TABLE `employees` DISABLE KEYS */;
-INSERT INTO `employees` VALUES (1,1,'EMP-001','Gargi','Singh','gargi.singh@vaidimi.com','9876543210',NULL,'FEMALE','1988-04-12','Director & Head of Operations (Admin)',3,'EMPLOYEE','2021-01-15',NULL,NULL,NULL,'Updated skills','ACTIVE',NULL,NULL,NULL,NULL,NULL,'2026-09-15 13:03:20','2026-09-19 11:59:49',30000.00,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'FIT_FOR_DUTY',NULL,NULL,NULL,NULL,NULL,1),(9,9,'VC2202','Vineet','Kumar','vineet.kumar@vaidimi.com','+91 9876543210',NULL,'MALE','1992-08-20','Relationship Manager',3,'EMPLOYEE','2022-03-01',NULL,NULL,NULL,'HR Operations, Talent Acquisition, Employee Welfare, Performance Management','ACTIVE',NULL,NULL,NULL,NULL,NULL,'2026-09-16 10:27:54','2026-09-19 11:59:50',30000.00,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'FIT_FOR_DUTY',NULL,NULL,NULL,NULL,NULL,1),(10,13,'VC2203','Madhu','Prajapati','madhu.prajapati@vaidimi.com','9876543299',NULL,'FEMALE',NULL,'Software Developer',1,'EMPLOYEE','2026-09-16',NULL,NULL,NULL,NULL,'ACTIVE',NULL,NULL,NULL,NULL,NULL,'2026-09-16 10:33:23','2026-09-19 11:59:50',32000.00,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'FIT_FOR_DUTY',NULL,NULL,NULL,NULL,NULL,1),(12,12,'VC2204','Varsha','Srivastav','varsha.srivastav@vaidimi.com','9876543210',NULL,'FEMALE',NULL,'Software Developer',1,'EMPLOYEE','2026-09-16',NULL,NULL,NULL,'Full Stack, React, Node.js','ACTIVE',NULL,'9876543211',NULL,NULL,NULL,'2026-09-16 11:16:03','2026-09-19 11:59:50',35000.00,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'FIT_FOR_DUTY',NULL,NULL,NULL,NULL,NULL,1),(13,14,'EMP-004','Aryan','Tiwari','aryan.tiwari@vaidimi.com',NULL,NULL,'MALE',NULL,'Frontend Developer',3,'EMPLOYEE','2026-09-16',NULL,NULL,NULL,NULL,'ACTIVE',NULL,NULL,NULL,NULL,NULL,'2026-09-16 11:16:03','2026-09-19 11:26:07',62000.00,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'FIT_FOR_DUTY',NULL,NULL,NULL,NULL,NULL,1),(20,21,'EMP-006','Pooja','Verma','pooja.verma@vaidimi.com','9876543299',NULL,NULL,NULL,'HR',NULL,'EMPLOYEE','2026-09-19',NULL,NULL,NULL,NULL,'ACTIVE',NULL,NULL,NULL,NULL,NULL,'2026-09-19 11:37:01','2026-09-19 11:37:01',30000.00,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'FIT_FOR_DUTY',NULL,NULL,NULL,NULL,NULL,2),(21,22,'VC2201','Mayank','Pandey','mayank.pandey@vaidimi.com','9876500001',NULL,'MALE',NULL,'Marketing Head',5,'EMPLOYEE','2025-01-01',NULL,NULL,NULL,NULL,'ACTIVE',NULL,NULL,NULL,NULL,NULL,'2026-09-19 11:59:50','2026-09-19 11:59:50',30000.00,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'FIT_FOR_DUTY',NULL,NULL,NULL,NULL,NULL,1),(22,23,'VC2205','Himanshu','Kannaujiya','himanshu.kannaujiya@vaidimi.com','9876500005',NULL,'MALE',NULL,'Care Executive',6,'EMPLOYEE','2025-01-01',NULL,NULL,NULL,NULL,'ACTIVE',NULL,NULL,NULL,NULL,NULL,'2026-09-19 11:59:50','2026-09-19 11:59:50',30000.00,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'FIT_FOR_DUTY',NULL,NULL,NULL,NULL,NULL,1),(24,25,'EMP-009','Muskan','Singh','muskan@gmail.com','8783982610',NULL,'FEMALE','2003-07-10','Junior Software Developer',1,'EMPLOYEE','2026-10-10',NULL,NULL,NULL,'Full stack ','ACTIVE','Sudhipur Varansi','9876543223',NULL,'Computer Application',NULL,'2026-10-10 06:53:23','2026-10-10 06:53:23',10500.00,'Siddharth','Katrina','O+','987654322345','Varansi ','Hindu','SINGLE',NULL,NULL,NULL,NULL,NULL,NULL,'FIT_FOR_DUTY','Graduation','Engineering & Technology',NULL,NULL,NULL,1);
+INSERT INTO `employees` VALUES (1,1,'EMP-001','Gargi','Singh','gargi@vidimiconsulting.com','9876543210','https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80','FEMALE','1988-04-12','Director & Head of Operations (Admin)',3,'EMPLOYEE','2021-01-15',NULL,NULL,NULL,'Updated skills','ACTIVE','',NULL,'','',NULL,'2026-09-15 13:03:20','2026-10-21 10:57:51',30000.00,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','',NULL,NULL,NULL,NULL,'FIT_FOR_DUTY','Graduation (B.Tech, BCA, B.Sc, B.Com, BBA)','Computer Applications & IT','','','',1),(9,9,'VC2202','Vineet','Kumar','vineet.kumar@vaidimi.com','+91 9876543210',NULL,'MALE','1992-08-20','Relationship Manager',3,'EMPLOYEE','2022-03-01',NULL,NULL,NULL,'HR Operations, Talent Acquisition, Employee Welfare, Performance Management','ACTIVE',NULL,NULL,NULL,NULL,NULL,'2026-09-16 10:27:54','2026-09-19 11:59:50',30000.00,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'FIT_FOR_DUTY',NULL,NULL,NULL,NULL,NULL,1),(10,13,'VC2203','Madhu','Prajapati','madhu.prajapati@vaidimi.com','9876543299',NULL,'FEMALE',NULL,'Software Developer',1,'EMPLOYEE','2026-09-16',NULL,NULL,NULL,NULL,'ACTIVE',NULL,NULL,NULL,NULL,NULL,'2026-09-16 10:33:23','2026-09-19 11:59:50',32000.00,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'FIT_FOR_DUTY',NULL,NULL,NULL,NULL,NULL,1),(12,12,'VC2204','Varsha','Srivastav','varsha.srivastav@vaidimi.com','9876543210',NULL,'FEMALE',NULL,'Software Developer',1,'EMPLOYEE','2026-09-16',NULL,NULL,NULL,'Full Stack, React, Node.js','ACTIVE',NULL,'9876543211',NULL,NULL,NULL,'2026-09-16 11:16:03','2026-09-19 11:59:50',35000.00,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'FIT_FOR_DUTY',NULL,NULL,NULL,NULL,NULL,1),(13,14,'EMP-004','Aryan','Tiwari','aryan.tiwari@vaidimi.com',NULL,NULL,'MALE',NULL,'Frontend Developer',3,'EMPLOYEE','2026-09-16',NULL,NULL,NULL,NULL,'ACTIVE',NULL,NULL,NULL,NULL,NULL,'2026-09-16 11:16:03','2026-09-19 11:26:07',62000.00,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'FIT_FOR_DUTY',NULL,NULL,NULL,NULL,NULL,1),(20,21,'EMP-006','Pooja','Verma','pooja.verma@vaidimi.com','9876543299',NULL,NULL,NULL,'HR',NULL,'EMPLOYEE','2026-09-19',NULL,NULL,NULL,NULL,'ACTIVE',NULL,NULL,NULL,NULL,NULL,'2026-09-19 11:37:01','2026-09-19 11:37:01',30000.00,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'FIT_FOR_DUTY',NULL,NULL,NULL,NULL,NULL,2),(21,22,'VC2201','Mayank','Pandey','mayank.pandey@vaidimi.com','9876500001',NULL,'MALE',NULL,'Marketing Head',5,'EMPLOYEE','2025-01-01',NULL,NULL,NULL,NULL,'ACTIVE',NULL,NULL,NULL,NULL,NULL,'2026-09-19 11:59:50','2026-09-19 11:59:50',30000.00,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'FIT_FOR_DUTY',NULL,NULL,NULL,NULL,NULL,1),(22,23,'VC2205','Himanshu','Kannaujiya','himanshu.kannaujiya@vaidimi.com','9876500005',NULL,'MALE',NULL,'Care Executive',6,'EMPLOYEE','2025-01-01',NULL,NULL,NULL,NULL,'ACTIVE',NULL,NULL,NULL,NULL,NULL,'2026-09-19 11:59:50','2026-09-19 11:59:50',30000.00,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'FIT_FOR_DUTY',NULL,NULL,NULL,NULL,NULL,1),(24,25,'EMP-009','Muskan','Singh','muskan@gmail.com','8783982610',NULL,'FEMALE','2003-07-10','Junior Software Developer',1,'EMPLOYEE','2026-10-10',NULL,NULL,NULL,'Full stack ','ACTIVE','Sudhipur Varansi','9876543223',NULL,'Computer Application',NULL,'2026-10-10 06:53:23','2026-10-10 06:53:23',10500.00,'Siddharth','Katrina','O+','987654322345','Varansi ','Hindu','SINGLE',NULL,NULL,NULL,NULL,NULL,NULL,'FIT_FOR_DUTY','Graduation','Engineering & Technology',NULL,NULL,NULL,1),(25,26,'ADM-001','Admin','Vaidimi','admin@vaidimiconsulting.in','9876543210',NULL,NULL,NULL,'System Administrator (Super Admin)',NULL,'EMPLOYEE','2021-01-01',NULL,NULL,NULL,NULL,'ACTIVE',NULL,NULL,NULL,NULL,NULL,'2026-10-21 09:49:20','2026-10-21 09:49:20',50000.00,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'FIT_FOR_DUTY',NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `employees` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -520,7 +542,6 @@ CREATE TABLE `leave_requests` (
 
 LOCK TABLES `leave_requests` WRITE;
 /*!40000 ALTER TABLE `leave_requests` DISABLE KEYS */;
-INSERT INTO `leave_requests` VALUES (9,12,'PAID_LEAVE','2026-09-17','2026-09-17',1.0,0,'bh','APPROVED',1,NULL,'Scheduled directly by Management (ADMIN)','2026-09-17 06:34:10','2026-09-17 06:34:10'),(10,12,'SICK_LEAVE','2026-10-05','2026-10-06',2.0,0,'Mild fever doctor rest','PENDING',NULL,NULL,NULL,'2026-09-19 11:45:49','2026-09-19 11:45:49');
 /*!40000 ALTER TABLE `leave_requests` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -582,7 +603,29 @@ CREATE TABLE `leave_types` (
   UNIQUE KEY `code_38` (`code`),
   UNIQUE KEY `code_39` (`code`),
   UNIQUE KEY `code_40` (`code`),
-  UNIQUE KEY `code_41` (`code`)
+  UNIQUE KEY `code_41` (`code`),
+  UNIQUE KEY `code_42` (`code`),
+  UNIQUE KEY `code_43` (`code`),
+  UNIQUE KEY `code_44` (`code`),
+  UNIQUE KEY `code_45` (`code`),
+  UNIQUE KEY `code_46` (`code`),
+  UNIQUE KEY `code_47` (`code`),
+  UNIQUE KEY `code_48` (`code`),
+  UNIQUE KEY `code_49` (`code`),
+  UNIQUE KEY `code_50` (`code`),
+  UNIQUE KEY `code_51` (`code`),
+  UNIQUE KEY `code_52` (`code`),
+  UNIQUE KEY `code_53` (`code`),
+  UNIQUE KEY `code_54` (`code`),
+  UNIQUE KEY `code_55` (`code`),
+  UNIQUE KEY `code_56` (`code`),
+  UNIQUE KEY `code_57` (`code`),
+  UNIQUE KEY `code_58` (`code`),
+  UNIQUE KEY `code_59` (`code`),
+  UNIQUE KEY `code_60` (`code`),
+  UNIQUE KEY `code_61` (`code`),
+  UNIQUE KEY `code_62` (`code`),
+  UNIQUE KEY `code_63` (`code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -625,7 +668,6 @@ CREATE TABLE `notifications` (
 
 LOCK TABLES `notifications` WRITE;
 /*!40000 ALTER TABLE `notifications` DISABLE KEYS */;
-INSERT INTO `notifications` VALUES (1,1,'New Leave Request','Alex Rivera has applied for 3 day(s) of PAID_LEAVE.','LEAVE_REQUEST',1,'/admin/leaves','2026-09-15 15:19:25','2026-09-15 15:37:11'),(3,1,'New Leave Request','Alex Rivera has applied for 2 day(s) of MENSTRUAL_LEAVE.','LEAVE_REQUEST',1,'/admin/leaves','2026-09-15 15:19:25','2026-09-15 15:37:11'),(20,1,'New Leave Request','Varsha Srivastava has applied for 1 day(s) of MENSTRUAL_LEAVE.','LEAVE_REQUEST',0,'/admin/leaves','2026-09-16 11:45:31','2026-09-16 11:45:31'),(21,12,'Leave Request APPROVED','Your leave request for 1.0 day(s) (MENSTRUAL_LEAVE) has been approved. Remarks: Approved under corporate female welfare policy','LEAVE_STATUS',0,'/employee/leaves','2026-09-16 11:45:31','2026-09-16 11:45:31'),(22,1,'New Leave Request','Aryan Tiwari has applied for 1 day(s) of CASUAL_LEAVE.','LEAVE_REQUEST',0,'/admin/leaves','2026-09-16 11:57:18','2026-09-16 11:57:18'),(23,1,'Assigned to Project: Garima Construction Project','You have been allocated to the project \"Garima Construction Project\" as \"Frontend UI Lead\".','PROJECT_ASSIGNED',0,'/employee/projects','2026-09-17 06:51:58','2026-09-17 06:51:58'),(24,1,'New Task Assigned: Design Architectural CAD Mockups & Foundation Review','You have been assigned to task \"Design Architectural CAD Mockups & Foundation Review\" on project \"Garima Construction Project\". Target due date: 2026-10-15.','TASK_ASSIGNED',0,'/employee/tasks','2026-09-17 06:51:58','2026-09-17 06:51:58'),(25,1,'Task Status Update: Design Architectural CAD Mockups & Foundation Review','Gargi Singh updated task \"Design Architectural CAD Mockups & Foundation Review\" on project \"Garima Construction Project\" to COMPLETED (100% completed) | Remarks: \"Foundation layout and CAD mockups completed 100%. Client engineers reviewed and approved today.\".','TASK_STATUS_UPDATE',0,'/admin/tasks','2026-09-17 06:51:58','2026-09-17 06:51:58'),(26,9,'Task Status Update: Design Architectural CAD Mockups & Foundation Review','Gargi Singh updated task \"Design Architectural CAD Mockups & Foundation Review\" on project \"Garima Construction Project\" to COMPLETED (100% completed) | Remarks: \"Foundation layout and CAD mockups completed 100%. Client engineers reviewed and approved today.\".','TASK_STATUS_UPDATE',0,'/admin/tasks','2026-09-17 06:51:58','2026-09-17 06:51:58'),(27,14,'Salary Statement Released: 2026-11','Your official compensation statement for 2026-11 has been released by Administration. Net Pay: ₹70,500.','PAYROLL_PUBLISHED',0,'/employee/salary','2026-09-17 07:22:49','2026-09-17 07:22:49'),(28,14,'Salary Statement Released: 2026-11','Your official compensation statement for 2026-11 has been released by Administration. Net Pay: ₹70,500.','PAYROLL_PUBLISHED',0,'/employee/salary','2026-09-17 07:23:10','2026-09-17 07:23:10'),(29,14,'Salary Statement Released: 2026-11','Your official compensation statement for 2026-11 has been released by Administration. Net Pay: ₹70,500.','PAYROLL_PUBLISHED',0,'/employee/salary','2026-09-17 07:23:10','2026-09-17 07:23:10'),(30,1,'New Leave Request','Varsha Srivastava has applied for 2 day(s) of SICK_LEAVE.','LEAVE_REQUEST',0,'/admin/leaves','2026-09-19 11:45:49','2026-09-19 11:45:49'),(31,9,'New Leave Request','Varsha Srivastava has applied for 2 day(s) of SICK_LEAVE.','LEAVE_REQUEST',0,'/admin/leaves','2026-09-19 11:45:49','2026-09-19 11:45:49'),(32,21,'New Leave Request','Varsha Srivastava has applied for 2 day(s) of SICK_LEAVE.','LEAVE_REQUEST',0,'/admin/leaves','2026-09-19 11:45:49','2026-09-19 11:45:49'),(33,12,'New Task Assigned: Front-Page Priority Assignment 8619','You have been assigned to task \"Front-Page Priority Assignment 8619\" on project \"garima Construction\" (Target Due Date: 2026-09-30).','TASK_ASSIGNED',0,'/employee/tasks','2026-09-21 12:02:18','2026-09-21 12:02:18');
 /*!40000 ALTER TABLE `notifications` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -701,8 +743,8 @@ CREATE TABLE `project_members` (
   UNIQUE KEY `project_members_employee_id_project_id_unique` (`project_id`,`employee_id`),
   UNIQUE KEY `unique_project_employee_member` (`project_id`,`employee_id`),
   KEY `employee_id` (`employee_id`),
-  CONSTRAINT `project_members_ibfk_351` FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `project_members_ibfk_352` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `project_members_ibfk_425` FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `project_members_ibfk_426` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -776,8 +818,8 @@ CREATE TABLE `projects` (
   UNIQUE KEY `projects_project_code_unique` (`project_code`),
   KEY `project_manager_id` (`project_manager_id`),
   KEY `branch_id` (`branch_id`),
-  CONSTRAINT `projects_ibfk_77` FOREIGN KEY (`project_manager_id`) REFERENCES `employees` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `projects_ibfk_78` FOREIGN KEY (`branch_id`) REFERENCES `branches` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `projects_ibfk_151` FOREIGN KEY (`project_manager_id`) REFERENCES `employees` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `projects_ibfk_152` FOREIGN KEY (`branch_id`) REFERENCES `branches` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -818,8 +860,8 @@ CREATE TABLE `tasks` (
   UNIQUE KEY `tasks_task_code_unique` (`task_code`),
   KEY `project_id` (`project_id`),
   KEY `assigned_to` (`assigned_to`),
-  CONSTRAINT `tasks_ibfk_351` FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `tasks_ibfk_352` FOREIGN KEY (`assigned_to`) REFERENCES `employees` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `tasks_ibfk_425` FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `tasks_ibfk_426` FOREIGN KEY (`assigned_to`) REFERENCES `employees` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -844,6 +886,8 @@ CREATE TABLE `users` (
   `email` varchar(191) NOT NULL,
   `password_hash` varchar(255) NOT NULL,
   `saved_password` varchar(255) DEFAULT NULL,
+  `reset_otp` varchar(20) DEFAULT NULL,
+  `reset_otp_expires_at` datetime DEFAULT NULL,
   `role` enum('ADMIN','HR','MANAGER','EMPLOYEE') NOT NULL DEFAULT 'EMPLOYEE',
   `is_active` tinyint(1) DEFAULT '1',
   `created_at` datetime NOT NULL,
@@ -852,7 +896,7 @@ CREATE TABLE `users` (
   `last_active_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -861,7 +905,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'gargi.singh@vaidimi.com','$2a$10$hIPHrOhbzEaAjukvzj/gS.yV3OJkMt.ZX0ABh4K6OKUnRhiAGD8tK','AdminPassword123!','ADMIN',1,'2026-09-15 13:03:20','2026-10-10 06:53:43',0,'2026-10-10 06:53:43'),(9,'vineet.kumar@vaidimi.com','$2a$10$hE5Cxouh/CEoADeh89muDuvrI.5L7ndqjV64tWixNMm2pOM8gq2LC','Vineet@2026!','HR',1,'2026-09-16 10:27:54','2026-09-19 12:00:32',1,'2026-09-19 12:00:32'),(10,'rohan.test@vaidimi.com','$2a$10$00jJui9gBnYVNFo/4c.Gj.RPOFBEWqadt4VMkAo9fT6IZWgg6Wh2u','Rohan@2026!','EMPLOYEE',1,'2026-09-16 10:33:23','2026-09-16 10:42:42',0,NULL),(12,'varsha.srivastav@vaidimi.com','$2a$10$V4NBW83t.8/X1cy7E3zJ4.qOno3pBHZET2NJuu6N3Cb99rhk5jGKG','Varsha@2026!','EMPLOYEE',1,'2026-09-16 11:16:03','2026-09-21 12:02:49',1,'2026-09-21 12:02:49'),(13,'madhu.prajapati@vaidimi.com','$2a$10$CrvJbO49gTKDvguUl1jfkOytL9jmsydkjgqMlyK8HhLfkD0tDLBIO','Madhu@2026!','EMPLOYEE',1,'2026-09-16 11:16:03','2026-09-19 12:00:32',1,'2026-09-19 12:00:32'),(14,'aryan.tiwari@vaidimi.com','$2a$10$TBp/lqSor7IVAs.cnu3Yk.uMjSGh.Ekjao4UU0mcUqUCqU2KVnRfq','Aryan@2026!','EMPLOYEE',1,'2026-09-16 11:16:03','2026-09-16 11:53:46',0,NULL),(21,'pooja.verma@vaidimi.com','$2a$10$aQL45vWcvUXhxCtYg.P/.eKt3CTQU4yjHxvnScJ3UTu9SuaNs5j8G','Pooja@2026!','HR',1,'2026-09-19 11:37:01','2026-09-19 11:37:01',1,'2026-09-19 11:37:01'),(22,'mayank.pandey@vaidimi.com','$2a$10$Qq/NPQ8IiJNRgJCBeg0mqufT8.dzFdbZoKC4RrHc7VAaHzN2HNaZS','Mayank@2026!','EMPLOYEE',1,'2026-09-19 11:59:50','2026-09-19 12:00:32',1,'2026-09-19 12:00:32'),(23,'himanshu.kannaujiya@vaidimi.com','$2a$10$mkA4VK9yLtHc45R.hNLpEeqodiaBnRxZc.ix2BqSFscf3YYtz64CG','Himanshu@2026!','EMPLOYEE',1,'2026-09-19 11:59:50','2026-09-19 12:00:32',1,'2026-09-19 12:00:32'),(25,'muskan@gmail.com','$2a$10$uOC6Uw2dXxNdMgUGzDULLusZdAFejjxSfklTpVFlojwhy3jKZeob6','Vaidimi@2026!','EMPLOYEE',1,'2026-10-10 06:53:23','2026-10-10 06:58:09',0,'2026-10-10 06:58:09');
+INSERT INTO `users` VALUES (1,'gargi@vidimiconsulting.com','$2a$10$UL6W4beW4QviO7B9MN56kOqQQarC4wVdkbfWydty2SL8T5mMx086K','Gargi@2026',NULL,NULL,'ADMIN',1,'2026-09-15 13:03:20','2026-10-21 11:03:44',0,'2026-10-21 11:03:44'),(9,'vineet.kumar@vaidimi.com','$2a$10$hE5Cxouh/CEoADeh89muDuvrI.5L7ndqjV64tWixNMm2pOM8gq2LC','Vineet@2026!',NULL,NULL,'HR',1,'2026-09-16 10:27:54','2026-09-19 12:00:32',1,'2026-09-19 12:00:32'),(10,'rohan.test@vaidimi.com','$2a$10$00jJui9gBnYVNFo/4c.Gj.RPOFBEWqadt4VMkAo9fT6IZWgg6Wh2u','Rohan@2026!',NULL,NULL,'EMPLOYEE',1,'2026-09-16 10:33:23','2026-10-21 10:48:53',1,'2026-10-21 10:48:53'),(12,'varsha.srivastav@vaidimi.com','$2a$10$V4NBW83t.8/X1cy7E3zJ4.qOno3pBHZET2NJuu6N3Cb99rhk5jGKG','Varsha@2026!',NULL,NULL,'EMPLOYEE',1,'2026-09-16 11:16:03','2026-09-21 12:02:49',1,'2026-09-21 12:02:49'),(13,'madhu.prajapati@vaidimi.com','$2a$10$CrvJbO49gTKDvguUl1jfkOytL9jmsydkjgqMlyK8HhLfkD0tDLBIO','Madhu@2026!',NULL,NULL,'EMPLOYEE',1,'2026-09-16 11:16:03','2026-09-19 12:00:32',1,'2026-09-19 12:00:32'),(14,'aryan.tiwari@vaidimi.com','$2a$10$TBp/lqSor7IVAs.cnu3Yk.uMjSGh.Ekjao4UU0mcUqUCqU2KVnRfq','Aryan@2026!',NULL,NULL,'EMPLOYEE',1,'2026-09-16 11:16:03','2026-09-16 11:53:46',0,NULL),(21,'pooja.verma@vaidimi.com','$2a$10$aQL45vWcvUXhxCtYg.P/.eKt3CTQU4yjHxvnScJ3UTu9SuaNs5j8G','Pooja@2026!',NULL,NULL,'HR',1,'2026-09-19 11:37:01','2026-09-19 11:37:01',1,'2026-09-19 11:37:01'),(22,'mayank.pandey@vaidimi.com','$2a$10$Qq/NPQ8IiJNRgJCBeg0mqufT8.dzFdbZoKC4RrHc7VAaHzN2HNaZS','Mayank@2026!',NULL,NULL,'EMPLOYEE',1,'2026-09-19 11:59:50','2026-09-19 12:00:32',1,'2026-09-19 12:00:32'),(23,'himanshu.kannaujiya@vaidimi.com','$2a$10$mkA4VK9yLtHc45R.hNLpEeqodiaBnRxZc.ix2BqSFscf3YYtz64CG','Himanshu@2026!',NULL,NULL,'EMPLOYEE',1,'2026-09-19 11:59:50','2026-09-19 12:00:32',1,'2026-09-19 12:00:32'),(25,'muskan@gmail.com','$2a$10$uOC6Uw2dXxNdMgUGzDULLusZdAFejjxSfklTpVFlojwhy3jKZeob6','Vaidimi@2026!',NULL,NULL,'EMPLOYEE',1,'2026-10-10 06:53:23','2026-10-10 06:58:09',0,'2026-10-10 06:58:09'),(26,'admin@vaidimiconsulting.in','$2a$10$VhMytaJ5j9mGeuRMKwsfX.I.yHhs16SwbHI1wmfpueY.ceqRXFabG','AdminPassword123',NULL,NULL,'ADMIN',1,'2026-10-21 09:49:20','2026-10-21 09:58:08',1,'2026-10-21 09:58:08');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -878,4 +922,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-10-10 13:28:32
+-- Dump completed on 2026-10-21 16:36:55
