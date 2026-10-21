@@ -238,10 +238,44 @@ async function sendPayslipReadyEmail({ to, employeeName, month, year, netSalary 
   });
 }
 
+/**
+ * Send Password Reset OTP Email
+ */
+async function sendPasswordResetOtpEmail({ to, employeeName, otp, expiresInMinutes = 10 }) {
+  const bodyHtml = `
+    <p>Dear <strong>${employeeName || 'User'}</strong>,</p>
+    <p>We received a request to reset your password for your Vaidimi Consulting corporate workspace account.</p>
+    
+    <div style="text-align: center; margin: 30px 0;">
+      <div style="display: inline-block; background-color: #042f2e; color: #2dd4bf; font-size: 32px; font-weight: 800; letter-spacing: 8px; padding: 16px 36px; border-radius: 10px; border: 2px dashed #0f766e; font-family: monospace;">
+        ${otp}
+      </div>
+      <p style="color: #64748b; font-size: 13px; margin-top: 10px;">This One-Time Password (OTP) is valid for <strong>${expiresInMinutes} minutes</strong>.</p>
+    </div>
+
+    <div style="background-color: #fffbeb; border-left: 4px solid #f59e0b; padding: 14px; border-radius: 6px; margin: 20px 0; font-size: 13px; color: #78350f;">
+      <strong>Security Notice:</strong> If you did not initiate this request, please ignore this email or notify your system administrator immediately. Do not share this OTP with anyone.
+    </div>
+  `;
+
+  const html = getBrandedEmailHtml({
+    title: 'Password Reset Verification Code',
+    preheader: `Your verification code is ${otp}. Valid for ${expiresInMinutes} minutes.`,
+    bodyHtml,
+  });
+
+  return await sendEmail({
+    to,
+    subject: `[Vaidimi Consulting] Password Reset Verification Code: ${otp}`,
+    html,
+  });
+}
+
 module.exports = {
   sendEmail,
   getBrandedEmailHtml,
   sendLeaveStatusEmail,
   sendTaskAssignmentEmail,
   sendPayslipReadyEmail,
+  sendPasswordResetOtpEmail,
 };

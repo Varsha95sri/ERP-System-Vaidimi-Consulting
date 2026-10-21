@@ -20,19 +20,17 @@ export const SocketProvider = ({ children }) => {
       return;
     }
 
-    let socketUrl = import.meta.env.VITE_API_URL
-      ? import.meta.env.VITE_API_URL.replace(/\/api\/?$/, '')
-      : 'http://localhost:5000';
-
-    if (
-      typeof window !== 'undefined' &&
-      window.location.hostname !== 'localhost' &&
-      window.location.hostname !== '127.0.0.1' &&
-      (!import.meta.env.VITE_API_URL || import.meta.env.VITE_API_URL.includes('localhost'))
-    ) {
-      const isPrivateIp = /^192\.168\.|^10\.|^172\.(1[6-9]|2\d|3[01])\./.test(window.location.hostname);
-      if (isPrivateIp) {
-        socketUrl = `${window.location.protocol}//${window.location.hostname}:5000`;
+    let socketUrl = 'http://localhost:5000';
+    if (typeof window !== 'undefined') {
+      const host = window.location.hostname;
+      if (host === 'localhost' || host === '127.0.0.1') {
+        socketUrl = 'http://localhost:5000';
+      } else if (/^192\.168\.|^10\.|^172\.(1[6-9]|2\d|3[01])\./.test(host)) {
+        socketUrl = `${window.location.protocol}//${host}:5000`;
+      } else if (host.includes('vaidimiconsulting.in')) {
+        socketUrl = 'https://api.vaidimiconsulting.in';
+      } else if (import.meta.env.VITE_API_URL && !import.meta.env.VITE_API_URL.includes('localhost')) {
+        socketUrl = import.meta.env.VITE_API_URL.replace(/\/api\/?$/, '');
       } else {
         socketUrl = `${window.location.protocol}//${window.location.host}`;
       }

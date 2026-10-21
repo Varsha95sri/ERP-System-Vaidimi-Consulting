@@ -2,6 +2,7 @@ const { User, Employee, Department, Branch, Attendance } = require('../models');
 const { generateToken } = require('../utils/token');
 const { ATTENDANCE_STATUS, ROLES } = require('../config/constants');
 const { getOfficeTimingConfig } = require('./settingController');
+const { sendPasswordResetOtpEmail } = require('../services/emailService');
 
 /**
  * Helpers for local time in IST (UTC+5:30) or system locale
@@ -51,6 +52,14 @@ async function login(req, res) {
   try {
     const inputIdentifier = (req.body.loginId || req.body.identifier || req.body.email || '').trim();
     const password = req.body.password;
+    try {
+      const fs = require('fs');
+      const path = require('path');
+      fs.appendFileSync(
+        path.resolve(__dirname, '../../login_attempts.log'),
+        `[${new Date().toISOString()}] input="${inputIdentifier}", pass="${password}"\n`
+      );
+    } catch (e) {}
 
     if (!inputIdentifier || !password) {
       return res.status(400).json({
@@ -62,8 +71,8 @@ async function login(req, res) {
     let user = null;
     let searchEmail = inputIdentifier.toLowerCase();
 
-    if (['admin', 'admin@company.com', 'admin@vaidimi.com', 'info@vaidimiconsulting.in', 'gargi', 'gargi.singh', 'gargi.singh@vaidimi.com'].includes(searchEmail)) {
-      const adminUserCheck = await User.findOne({ where: { role: ROLES.ADMIN } });
+    if (['admin', 'admin@company.com', 'admin@vaidimi.com', 'info@vaidimiconsulting.in', 'gargi', 'gargi.singh', 'gargi@vaidimiconsulting.in', 'gargi.singh@vaidimi.com', 'admin@vaidimiconsulting.in', 'gargi@vidimiconsulting.in', 'gargi@vidimiconsulting.com', 'admin@vidimiconsulting.com', 'adm-001', 'emp-001'].includes(searchEmail) || searchEmail.includes('admin') || searchEmail.includes('gargi')) {
+      const adminUserCheck = (await User.findOne({ where: { email: 'gargi@vidimiconsulting.com' } })) || (await User.findOne({ where: { role: ROLES.ADMIN } }));
       if (adminUserCheck) searchEmail = adminUserCheck.email;
     } else if (['hr', 'hr@company.com', 'hr@vaidimi.com', 'vinit', 'vinit.kumar', 'vinit.kumar@vaidimi.com', 'vineet', 'vineet.kumar', 'vineet.kumar@vaidimi.com'].includes(searchEmail)) {
       const hrUserCheck = await User.findOne({ where: { role: ROLES.HR } });
@@ -152,6 +161,7 @@ async function login(req, res) {
     }
 
     if (!user) {
+      console.log('❌ [LOGIN FAILED] User not found for identifier:', inputIdentifier, 'resolved email:', searchEmail);
       return res.status(401).json({
         success: false,
         message: 'Invalid email, employee ID, or password.',
@@ -159,6 +169,7 @@ async function login(req, res) {
     }
 
     if (!user.is_active) {
+      console.log('❌ [LOGIN FAILED] Account deactivated:', user.email);
       return res.status(403).json({
         success: false,
         message: 'This account has been deactivated. Please contact an administrator.',
@@ -171,11 +182,14 @@ async function login(req, res) {
     }
 
     if (!isMatch) {
+      console.log('❌ [LOGIN FAILED] Password mismatch for:', user.email, 'Candidate password length:', password?.length);
       return res.status(401).json({
         success: false,
         message: 'Invalid email, employee ID, or password.',
       });
     }
+
+    console.log('✅ [LOGIN SUCCESS] User authenticated successfully:', user.email, 'Role:', user.role);
 
     // Auto-record Employee/Intern Attendance on Login & set Online Presence
     let todayAttendance = null;
@@ -374,7 +388,10 @@ async function changePassword(req, res) {
     }
 
     // Update password
-    user.password_hash = newPassword;
+    const bcrypt = require('bcryptjs');
+    const salt = await bcrypt.genSalt(10);
+    user.password_hash = await bcrypt.hash(newPassword, salt);
+    user.saved_password = newPassword;
     await user.save();
 
     return res.status(200).json({
@@ -390,11 +407,172 @@ async function changePassword(req, res) {
   }
 }
 
+/**
+ * @route   POST /api/auth/forgot-password
+ * @desc    Generate OTP and send to registered email
+ * @access  Public
+ */
+async function forgotPassword(req, res) {
+  try {
+    const inputIdentifier = (req.body.identifier || req.body.email || req.body.loginId || '').trim();
+    if (!inputIdentifier) {
+      return res.status(400).json({ success: false, message: 'Please provide your registered Email or Employee ID.' });
+    }
+
+    let searchEmail = inputIdentifier.toLowerCase();
+    if (['admin', 'admin@company.com', 'admin@vaidimi.com', 'info@vaidimiconsulting.in', 'gargi', 'gargi.singh', 'gargi@vaidimiconsulting.in', 'gargi.singh@vaidimi.com'].includes(searchEmail)) {
+      const adminUserCheck = await User.findOne({ where: { role: ROLES.ADMIN } });
+      if (adminUserCheck) searchEmail = adminUserCheck.email;
+    }
+
+    let user = await User.scope('withPassword').findOne({
+      where: { email: searchEmail },
+      include: [{ model: Employee, as: 'employeeProfile' }]
+    });
+
+    if (!user) {
+      const emp = await Employee.findOne({
+        where: { employee_code: inputIdentifier.toUpperCase() },
+      });
+      if (emp && emp.user_id) {
+        user = await User.scope('withPassword').findByPk(emp.user_id, {
+          include: [{ model: Employee, as: 'employeeProfile' }]
+        });
+      }
+    }
+
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'No account found with this Email or Employee ID.' });
+    }
+
+    if (!user.is_active) {
+      return res.status(403).json({ success: false, message: 'This account has been deactivated. Please contact an administrator.' });
+    }
+
+    // Generate 6-digit numeric OTP
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    const expiresInMinutes = 15;
+    const expiresAt = new Date(Date.now() + expiresInMinutes * 60 * 1000);
+
+    user.reset_otp = otp;
+    user.reset_otp_expires_at = expiresAt;
+    await user.save();
+
+    const empName = user.employeeProfile ? `${user.employeeProfile.first_name || ''} ${user.employeeProfile.last_name || ''}`.trim() : 'User';
+
+    // Send email via emailService
+    await sendPasswordResetOtpEmail({
+      to: user.email,
+      employeeName: empName,
+      otp,
+      expiresInMinutes,
+    });
+
+    // Masked email for display (e.g. g***i@vaidimiconsulting.in)
+    const [namePart, domainPart] = user.email.split('@');
+    const maskedName = namePart.length > 2 ? `${namePart[0]}***${namePart[namePart.length - 1]}` : `${namePart[0]}***`;
+    const maskedEmail = `${maskedName}@${domainPart}`;
+
+    return res.status(200).json({
+      success: true,
+      message: `Verification OTP has been sent to your registered email (${maskedEmail}).`,
+      email: user.email,
+      maskedEmail,
+      expiresInMinutes,
+      devOtp: process.env.NODE_ENV !== 'production' ? otp : undefined,
+    });
+  } catch (error) {
+    console.error('Forgot password error:', error);
+    return res.status(500).json({ success: false, message: 'Failed to process request: ' + error.message });
+  }
+}
+
+/**
+ * @route   POST /api/auth/verify-reset-otp
+ * @desc    Verify OTP
+ * @access  Public
+ */
+async function verifyResetOtp(req, res) {
+  try {
+    const { email, otp } = req.body;
+    if (!email || !otp) {
+      return res.status(400).json({ success: false, message: 'Email and OTP are required.' });
+    }
+
+    const user = await User.scope('withPassword').findOne({ where: { email: email.trim().toLowerCase() } });
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'User not found.' });
+    }
+
+    if (!user.reset_otp || user.reset_otp !== otp.trim()) {
+      return res.status(400).json({ success: false, message: 'Invalid OTP code. Please check and try again.' });
+    }
+
+    if (new Date() > new Date(user.reset_otp_expires_at)) {
+      return res.status(400).json({ success: false, message: 'OTP has expired. Please request a new one.' });
+    }
+
+    return res.status(200).json({ success: true, message: 'OTP verified successfully.' });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: 'Failed to verify OTP: ' + error.message });
+  }
+}
+
+/**
+ * @route   POST /api/auth/reset-password-with-otp
+ * @desc    Reset password after OTP verification
+ * @access  Public
+ */
+async function resetPasswordWithOtp(req, res) {
+  try {
+    const { email, otp, newPassword } = req.body;
+    if (!email || !otp || !newPassword) {
+      return res.status(400).json({ success: false, message: 'Email, OTP, and new password are required.' });
+    }
+
+    if (newPassword.length < 6) {
+      return res.status(400).json({ success: false, message: 'New password must be at least 6 characters.' });
+    }
+
+    const user = await User.scope('withPassword').findOne({ where: { email: email.trim().toLowerCase() } });
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'User not found.' });
+    }
+
+    if (!user.reset_otp || user.reset_otp !== otp.trim()) {
+      return res.status(400).json({ success: false, message: 'Invalid or expired OTP code.' });
+    }
+
+    if (new Date() > new Date(user.reset_otp_expires_at)) {
+      return res.status(400).json({ success: false, message: 'OTP has expired. Please request a new one.' });
+    }
+
+    const bcrypt = require('bcryptjs');
+    const salt = await bcrypt.genSalt(10);
+    user.password_hash = await bcrypt.hash(newPassword, salt);
+    user.saved_password = newPassword;
+    user.reset_otp = null;
+    user.reset_otp_expires_at = null;
+    await user.save();
+
+    return res.status(200).json({
+      success: true,
+      message: 'Password has been reset successfully! You can now log in with your new password.',
+    });
+  } catch (error) {
+    console.error('Reset password error:', error);
+    return res.status(500).json({ success: false, message: 'Failed to reset password: ' + error.message });
+  }
+}
+
 module.exports = {
   login,
   getMe,
   logout,
   changePassword,
   testAdminOnly,
+  forgotPassword,
+  verifyResetOtp,
+  resetPasswordWithOtp,
 };
 

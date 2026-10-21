@@ -19,6 +19,7 @@ async function migrateSavedPassword() {
     // 2. Default passwords for known accounts
     const initialPasswords = {
       'admin@company.com': 'AdminPassword123!',
+      'gargi@vaidimiconsulting.in': 'AdminPassword123!',
       'gargi.singh@vaidimi.com': 'AdminPassword123!',
       'vinit.kumar@vaidimi.com': 'Vinit@2026!',
       'varsha.srivastava@vaidimi.com': 'Varsha@2026!',

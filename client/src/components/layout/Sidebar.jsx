@@ -129,41 +129,39 @@ function Sidebar({ isOpen = false, onClose }) {
           </button>
         )}
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-          <div style={{
-            backgroundColor: 'rgba(255, 255, 255, 0.08)',
-            padding: '4px 6px',
-            borderRadius: 'var(--radius-md)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            border: '1px solid rgba(255, 255, 255, 0.12)',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.2)'
-          }}>
+        <NavLink
+          to={isAdmin ? '/admin/dashboard' : isHR ? '/hr/dashboard' : '/employee/dashboard'}
+          style={{ textDecoration: 'none', display: 'block' }}
+          title="Vaidimi Consulting ERP"
+        >
+          <div
+            style={{
+              backgroundColor: '#ffffff',
+              borderRadius: '10px',
+              padding: '6px 12px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.18)',
+              border: '1px solid rgba(255, 255, 255, 0.3)',
+              transition: 'transform 0.15s ease',
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.02)')}
+            onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+          >
             <img
-              src="/logo-icon.png"
-              alt="Vaidimi Consulting"
+              src="/logo.png"
+              alt="Vaidimi Consulting - Guidance Growth Success"
               style={{
-                height: '34px',
+                height: '44px',
                 width: 'auto',
+                maxWidth: '100%',
                 objectFit: 'contain',
+                display: 'block',
               }}
             />
           </div>
-          <div>
-            <div style={{ fontWeight: '800', fontSize: '1.05rem', letterSpacing: '-0.02em', color: '#ffffff', lineHeight: 1.2 }}>
-              Vaidimi
-            </div>
-            <div style={{ fontSize: '0.75rem', fontWeight: '600', color: '#2dd4bf', letterSpacing: '0.02em' }}>
-              Consulting
-            </div>
-          </div>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '0.25rem' }}>
-          <div style={{ fontSize: '0.6875rem', color: '#94a3b8', fontStyle: 'italic', letterSpacing: '0.03em' }}>
-            Guidance &bull; Growth &bull; Success
-          </div>
-        </div>
+        </NavLink>
         <div style={{
           display: 'flex',
           alignItems: 'center',

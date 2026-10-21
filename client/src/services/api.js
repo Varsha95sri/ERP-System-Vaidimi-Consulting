@@ -1,23 +1,28 @@
 import axios from 'axios';
 
 function getApiBaseUrl() {
-  if (import.meta.env.VITE_API_URL && !import.meta.env.VITE_API_URL.includes('localhost')) {
-    const rawUrl = import.meta.env.VITE_API_URL.trim().replace(/\/+$/, '');
-    return rawUrl.endsWith('/api') ? rawUrl : `${rawUrl}/api`;
-  }
   if (typeof window !== 'undefined') {
     const host = window.location.hostname;
+    // When running locally, ALWAYS connect to local backend server
+    if (host === 'localhost' || host === '127.0.0.1') {
+      return 'http://localhost:5000/api';
+    }
     // If user opens from mobile on local Wi-Fi, point to host PC on port 5000
     const isPrivateIp = /^192\.168\.|^10\.|^172\.(1[6-9]|2\d|3[01])\./.test(host);
     if (isPrivateIp) {
       return `${window.location.protocol}//${host}:5000/api`;
     }
-    // If hosted on a live domain (e.g. production cloud/VPS)
-    if (host !== 'localhost' && host !== '127.0.0.1') {
-      return `${window.location.origin}/api`;
+    // If hosted on live Vaidimi domain
+    if (host.includes('vaidimiconsulting.in')) {
+      return 'https://api.vaidimiconsulting.in/api';
     }
+    if (import.meta.env.VITE_API_URL && !import.meta.env.VITE_API_URL.includes('localhost')) {
+      const rawUrl = import.meta.env.VITE_API_URL.trim().replace(/\/+$/, '');
+      return rawUrl.endsWith('/api') ? rawUrl : `${rawUrl}/api`;
+    }
+    return `${window.location.origin}/api`;
   }
-  return import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+  return 'http://localhost:5000/api';
 }
 
 const API_BASE_URL = getApiBaseUrl();

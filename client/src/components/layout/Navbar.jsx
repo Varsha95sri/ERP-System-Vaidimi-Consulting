@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import ThemeToggle from '../common/ThemeToggle';
 
 function Navbar({ apiStatus }) {
@@ -18,25 +19,18 @@ function Navbar({ apiStatus }) {
         height: '70px'
       }}>
         {/* Logo & Brand */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.875rem' }}>
+        <Link to="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
           <img
             src="/logo.png"
             alt="Vaidimi Consulting Logo"
             style={{
-              height: '48px',
-              maxWidth: '220px',
+              height: '46px',
+              maxWidth: '240px',
               objectFit: 'contain',
+              display: 'block',
             }}
           />
-          <div>
-            <div style={{ fontWeight: '800', fontSize: '1.125rem', color: 'var(--text-main)', letterSpacing: '-0.02em' }}>
-              Vaidimi Consulting
-            </div>
-            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-              Guidance &bull; Growth &bull; Success
-            </div>
-          </div>
-        </div>
+        </Link>
 
         {/* Corporate Status & Workspace */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>

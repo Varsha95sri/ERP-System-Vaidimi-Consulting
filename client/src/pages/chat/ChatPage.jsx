@@ -34,6 +34,7 @@ function ChatPage() {
   // Modals
   const [isNewGroupModalOpen, setIsNewGroupModalOpen] = useState(false);
   const [isDirectModalOpen, setIsDirectModalOpen] = useState(false);
+  const [directSearch, setDirectSearch] = useState('');
   const [isGroupInfoOpen, setIsGroupInfoOpen] = useState(false);
   const [projects, setProjects] = useState([]);
 
@@ -1315,65 +1316,113 @@ function ChatPage() {
               </button>
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-              {activeColleagues.map((member) => (
-                <div
-                  key={member.id}
-                  onClick={() => handleStartDirectChat(member)}
-                  style={{
-                    padding: '0.75rem',
-                    borderRadius: 'var(--radius-md)',
-                    border: '1px solid var(--border-color)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    cursor: 'pointer',
-                    transition: 'all 0.15s ease',
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--primary-light)')}
-                  onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#ffffff')}
-                >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                    <div style={{ position: 'relative', width: '38px', height: '38px' }}>
-                      <div
-                        style={{
-                          width: '38px',
-                          height: '38px',
-                          borderRadius: '50%',
-                          backgroundColor: member.employment_type === 'INTERN' ? '#e0f2fe' : 'var(--primary-light)',
-                          color: member.employment_type === 'INTERN' ? '#0369a1' : 'var(--primary)',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          fontWeight: '700',
-                          fontSize: '0.8125rem',
-                          overflow: 'hidden',
-                        }}
-                      >
-                        {member.profile_photo ? (
-                          <img src={member.profile_photo} alt={member.displayName} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                        ) : (
-                          member.displayName.slice(0, 2).toUpperCase()
-                        )}
+            <div style={{ marginBottom: '1rem' }}>
+              <input
+                type="text"
+                placeholder="🔍 Search colleague by name, designation, or department..."
+                value={directSearch}
+                onChange={(e) => setDirectSearch(e.target.value)}
+                style={{
+                  width: '100%',
+                  padding: '0.625rem 0.875rem',
+                  borderRadius: 'var(--radius-md)',
+                  border: '1px solid var(--border-color)',
+                  fontSize: '0.85rem',
+                  backgroundColor: '#ffffff',
+                  outline: 'none',
+                }}
+                autoFocus
+              />
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', maxHeight: '55vh', overflowY: 'auto' }}>
+              {activeColleagues
+                .filter((m) => {
+                  if (!directSearch.trim()) return true;
+                  const q = directSearch.toLowerCase();
+                  return (
+                    m.displayName?.toLowerCase().includes(q) ||
+                    m.designation?.toLowerCase().includes(q) ||
+                    m.department?.toLowerCase().includes(q) ||
+                    m.email?.toLowerCase().includes(q)
+                  );
+                })
+                .map((member) => (
+                  <div
+                    key={member.id}
+                    onClick={() => {
+                      setDirectSearch('');
+                      handleStartDirectChat(member);
+                    }}
+                    style={{
+                      padding: '0.75rem',
+                      borderRadius: 'var(--radius-md)',
+                      border: '1px solid var(--border-color)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      cursor: 'pointer',
+                      transition: 'all 0.15s ease',
+                      backgroundColor: '#ffffff',
+                    }}
+                    onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--primary-light)')}
+                    onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#ffffff')}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                      <div style={{ position: 'relative', width: '38px', height: '38px' }}>
+                        <div
+                          style={{
+                            width: '38px',
+                            height: '38px',
+                            borderRadius: '50%',
+                            backgroundColor: member.employment_type === 'INTERN' ? '#e0f2fe' : 'var(--primary-light)',
+                            color: member.employment_type === 'INTERN' ? '#0369a1' : 'var(--primary)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            fontWeight: '700',
+                            fontSize: '0.8125rem',
+                            overflow: 'hidden',
+                          }}
+                        >
+                          {member.profile_photo ? (
+                            <img src={member.profile_photo} alt={member.displayName} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                          ) : (
+                            member.displayName.slice(0, 2).toUpperCase()
+                          )}
+                        </div>
+                        <span style={{ position: 'absolute', bottom: '-2px', right: '-2px' }}>
+                          <OnlineIndicator isOnline={member.is_online} size="xs" />
+                        </span>
                       </div>
-                      <span style={{ position: 'absolute', bottom: '-2px', right: '-2px' }}>
-                        <OnlineIndicator isOnline={member.is_online} size="xs" />
-                      </span>
+
+                      <div>
+                        <div style={{ fontWeight: '700', fontSize: '0.875rem', color: 'var(--text-main)' }}>
+                          {member.displayName}
+                        </div>
+                        <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+                          {member.designation} &bull; {member.department}
+                        </div>
+                      </div>
                     </div>
 
-                    <div>
-                      <div style={{ fontWeight: '700', fontSize: '0.875rem', color: 'var(--text-main)' }}>
-                        {member.displayName}
-                      </div>
-                      <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-                        {member.designation} &bull; {member.department}
-                      </div>
-                    </div>
+                    <OnlineIndicator isOnline={member.is_online} size="xs" showText={true} />
                   </div>
-
-                  <OnlineIndicator isOnline={member.is_online} size="xs" showText={true} />
+                ))}
+              {activeColleagues.filter((m) => {
+                if (!directSearch.trim()) return true;
+                const q = directSearch.toLowerCase();
+                return (
+                  m.displayName?.toLowerCase().includes(q) ||
+                  m.designation?.toLowerCase().includes(q) ||
+                  m.department?.toLowerCase().includes(q) ||
+                  m.email?.toLowerCase().includes(q)
+                );
+              }).length === 0 && (
+                <div style={{ textAlign: 'center', padding: '2rem 1rem', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
+                  No colleagues found matching "{directSearch}"
                 </div>
-              ))}
+              )}
             </div>
           </div>
         </div>

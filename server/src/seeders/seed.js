@@ -38,20 +38,25 @@ async function seed() {
   }
   console.log('✅ Departments ready.');
 
-  // 2. Seed Default Admin User (Gargi Singh)
-  console.log('👤 Seeding Default Admin (Gargi Singh)...');
-  let adminUser = await User.scope('withPassword').findOne({ where: { email: 'gargi.singh@vaidimi.com' } });
-  if (!adminUser) {
-    adminUser = await User.findOne({ where: { email: 'admin@company.com' } });
-  }
+  // 2. Seed Default Admin User
+  console.log('👤 Seeding Default Admin (gargi@vidimiconsulting.in)...');
+  let adminUser = await User.scope('withPassword').findOne({ where: { email: 'gargi@vidimiconsulting.in' } });
   if (!adminUser) {
     adminUser = await User.create({
-      email: 'gargi.singh@vaidimi.com',
-      password_hash: 'AdminPassword123!',
+      email: 'gargi@vidimiconsulting.in',
+      password_hash: 'Gargi@2026',
+      saved_password: 'Gargi@2026',
       role: ROLES.ADMIN,
       is_active: true,
     });
-    console.log('✅ Created Admin user: gargi.singh@vaidimi.com');
+    console.log('✅ Created Admin user: gargi@vidimiconsulting.in');
+  } else {
+    await adminUser.update({
+      password_hash: 'Gargi@2026',
+      saved_password: 'Gargi@2026',
+      role: ROLES.ADMIN,
+      is_active: true,
+    });
   }
 
   let adminEmp = await Employee.findOne({ where: { user_id: adminUser.id } });
@@ -61,7 +66,7 @@ async function seed() {
       employee_code: 'EMP-001',
       first_name: 'Gargi',
       last_name: 'Singh',
-      email: 'gargi.singh@vaidimi.com',
+      email: 'gargi@vidimiconsulting.in',
       phone: '+91 9876500001',
       gender: 'FEMALE',
       date_of_birth: '1992-06-18',
@@ -77,7 +82,7 @@ async function seed() {
     await adminEmp.update({
       first_name: 'Gargi',
       last_name: 'Singh',
-      email: 'gargi.singh@vaidimi.com',
+      email: 'gargi@vidimiconsulting.in',
       designation: 'Director of Operations & Admin',
     });
   }
@@ -213,7 +218,7 @@ async function seed() {
 
   console.log('====================================================');
   console.log('🎉 Seed Completed Successfully!');
-  console.log('Admin Account:      Gargi Singh (gargi.singh@vaidimi.com / EMP-001)');
+  console.log('Admin Account:      Gargi Singh (gargi@vaidimiconsulting.in / EMP-001)');
   console.log('HR Account:         Vinit Kumar (vinit.kumar@vaidimi.com / EMP-HR01)');
   console.log('Employee Accounts:  Varsha Srivastava (EMP-002)');
   console.log('                    Madhumita Prajapati (EMP-003)');

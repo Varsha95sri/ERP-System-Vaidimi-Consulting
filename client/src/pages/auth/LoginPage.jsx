@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import ThemeToggle from '../../components/common/ThemeToggle';
@@ -15,6 +15,14 @@ function LoginPage() {
   const location = useLocation();
 
   const from = location.state?.from?.pathname || null;
+
+  // Clear any corrupt or stale tokens on login page mount
+  useEffect(() => {
+    try {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+    } catch (e) {}
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,7 +47,6 @@ function LoginPage() {
         targetPath = '/hr/dashboard';
       }
 
-      // If user had a prior intended destination, only navigate there if compatible with their role
       if (from && typeof from === 'string') {
         const isAdmin = userRole === 'ADMIN' || userRole === 'MANAGER';
         const isHR = userRole === 'HR';
@@ -83,27 +90,28 @@ function LoginPage() {
             display: 'inline-flex',
             alignItems: 'center',
             justifyContent: 'center',
-            marginBottom: '0.75rem',
+            marginBottom: '0.875rem',
           }}>
             <img
-              src="/logo.jpg"
+              src="/logo.png"
               alt="Vaidimi Consulting Logo"
               style={{
                 height: 'auto',
-                maxHeight: '70px',
-                maxWidth: '240px',
+                maxHeight: '68px',
+                maxWidth: '260px',
                 objectFit: 'contain',
                 backgroundColor: '#ffffff',
-                padding: '0.5rem',
-                borderRadius: '8px',
+                padding: '0.5rem 1rem',
+                borderRadius: '12px',
+                boxShadow: '0 4px 14px rgba(0,0,0,0.08)'
               }}
             />
           </div>
-          <h1 style={{ fontSize: '1.5rem', letterSpacing: '-0.02em', marginBottom: '0.25rem', color: 'var(--text-main)' }}>
-            Vaidimi Consulting
+          <h1 style={{ fontSize: '1.35rem', fontWeight: '800', letterSpacing: '-0.02em', marginBottom: '0.25rem', color: 'var(--text-main)' }}>
+            Enterprise Workspace Portal
           </h1>
           <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem', fontWeight: '500' }}>
-            Guidance &bull; Growth &bull; Success &bull; Portal
+            Secure ERP &amp; Workforce Management Login
           </p>
         </div>
 
@@ -135,7 +143,7 @@ function LoginPage() {
               </label>
               <input
                 type="text"
-                placeholder="info@vaidimiconsulting.in or EMP-001"
+                placeholder="gargi@vidimiconsulting.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 style={{
@@ -145,16 +153,16 @@ function LoginPage() {
                   border: '1px solid var(--border-color)',
                   fontSize: '0.9375rem',
                   outline: 'none',
-                  transition: 'border-color var(--transition-fast)',
                   backgroundColor: 'var(--bg-card)',
                   color: 'var(--text-main)'
                 }}
                 required
+                autoFocus
               />
             </div>
 
             {/* Password Field */}
-            <div style={{ marginBottom: '1.5rem' }}>
+            <div style={{ marginBottom: '1.75rem' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
                 <label style={{ fontSize: '0.875rem', fontWeight: '600', color: 'var(--text-main)' }}>
                   Password
@@ -168,7 +176,7 @@ function LoginPage() {
                     color: 'var(--primary)',
                     fontSize: '0.8125rem',
                     cursor: 'pointer',
-                    fontWeight: '500'
+                    fontWeight: '600'
                   }}
                 >
                   {showPassword ? 'Hide' : 'Show'}
@@ -198,13 +206,13 @@ function LoginPage() {
               type="submit"
               className="btn btn-primary"
               disabled={isSubmitting}
-              style={{ width: '100%', padding: '0.75rem', fontSize: '1rem' }}
+              style={{ width: '100%', padding: '0.75rem', fontSize: '1rem', fontWeight: '600' }}
             >
               {isSubmitting ? 'Signing in...' : 'Sign In'}
             </button>
           </form>
 
-          {/* Corporate Security Footer inside Card */}
+          {/* Corporate Security Footer */}
           <div style={{
             marginTop: '1.75rem',
             paddingTop: '1.25rem',

@@ -128,6 +128,46 @@ export const AuthProvider = ({ children }) => {
     });
   };
 
+  // Request password reset OTP
+  const forgotPassword = async (identifier) => {
+    try {
+      const res = await api.post('/auth/forgot-password', {
+        identifier,
+        email: identifier,
+      });
+      return { success: true, data: res.data };
+    } catch (error) {
+      const message = error.response?.data?.message || error.message || 'Failed to send OTP.';
+      return { success: false, message };
+    }
+  };
+
+  // Verify OTP
+  const verifyResetOtp = async (email, otp) => {
+    try {
+      const res = await api.post('/auth/verify-reset-otp', { email, otp });
+      return { success: true, message: res.data?.message || 'OTP verified!' };
+    } catch (error) {
+      const message = error.response?.data?.message || error.message || 'Invalid or expired OTP.';
+      return { success: false, message };
+    }
+  };
+
+  // Reset Password with OTP
+  const resetPasswordWithOtp = async (email, otp, newPassword) => {
+    try {
+      const res = await api.post('/auth/reset-password-with-otp', {
+        email,
+        otp,
+        newPassword,
+      });
+      return { success: true, message: res.data?.message || 'Password reset successfully!' };
+    } catch (error) {
+      const message = error.response?.data?.message || error.message || 'Failed to reset password.';
+      return { success: false, message };
+    }
+  };
+
   const isAdmin = user?.role === 'ADMIN' || user?.role === 'MANAGER';
   const isHR = user?.role === 'HR';
   const isAdminOrHR = isAdmin || isHR;
@@ -148,6 +188,9 @@ export const AuthProvider = ({ children }) => {
         login,
         logout,
         changePassword,
+        forgotPassword,
+        verifyResetOtp,
+        resetPasswordWithOtp,
         refreshUser,
         updateUser,
       }}

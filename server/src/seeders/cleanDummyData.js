@@ -11,9 +11,19 @@ async function cleanDummyData() {
   }
 
   // 1. Identify Admin User and Admin Employee
-  const adminUser = await User.findOne({ where: { email: 'admin@company.com' } });
+  const adminUser = await User.findOne({
+    where: {
+      [Op.or]: [
+        { email: 'gargi@vidimiconsulting.in' },
+        { email: 'admin@vaidimiconsulting.in' },
+        { role: 'ADMIN' },
+        { email: 'gargi@vaidimiconsulting.in' },
+        { email: 'admin@company.com' }
+      ]
+    }
+  });
   if (!adminUser) {
-    console.error('Admin user (admin@company.com) not found! Aborting to protect system.');
+    console.error('Admin user not found! Aborting to protect system.');
     process.exit(1);
   }
 
